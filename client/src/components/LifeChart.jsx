@@ -5,7 +5,6 @@ import { Pie } from 'react-chartjs-2';
 
 const LifeChart = () => {
 
-    const [clientList, setClientList] = useState([]);
     const [foundLabel, setFoundLabel] = useState("");
     const [labelValues, setLabelValues] = useState([]);
     const [lifeChartData, setLifeChartData] = useState([]);
@@ -14,8 +13,6 @@ const LifeChart = () => {
         axios.get('http://localhost:8000/api/clients')
             .then(response => {
                 console.log(response.data)
-                setClientList(response.data)
-
                 const lifePre_underwritingCount = response.data.filter(item => item.insurance_type === 'Life Insurance' && item.process_stage=== 'Pre-underwriting').length;
                 const lifeUnderwritingCount = response.data.filter(item => item.insurance_type === 'Life Insurance' && item.process_stage=== 'Underwriting').length;
                 const lifeApprovedCount = response.data.filter(item => item.insurance_type === 'Life Insurance' && item.process_stage=== 'Approved').length;

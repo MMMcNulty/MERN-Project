@@ -7,7 +7,7 @@ const DiDetail = () => {
     return (
         <div>
             <DIChart />
-            <Link to="/">Return to Dashboard</Link>
+            <Link to="/">Return to Dashboard</Link> | <Link to="/disabilityInsuranceDetail">Detailed View</Link>
         </div>
     )
 }

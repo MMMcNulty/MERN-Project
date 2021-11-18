@@ -1,21 +1,22 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pie, defaults } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
+// import { useHistory } from 'react-router';
 
 const DIChart = () => {
-    const [clientList, setClientList] = useState([]);
-    const [foundLabel, setFoundLabel] = useState("");
-    const [labelValues, setLabelValues] = useState([]);
+    // const [clientList, setClientList] = useState([]);
+    // const [foundLabel, setFoundLabel] = useState("");
+    // const [labelValues, setLabelValues] = useState([]);
     const [disabilityChartData, setDisabilityChartData] = useState([]);
+    // const history = useHistory();
 
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/clients')
             .then(response => {
                 console.log(response.data)
-                setClientList(response.data)
-
+                // setClientList(response.data)
                 const disabilityPre_underwritingCount = response.data.filter(item => item.insurance_type === 'Disability Insurance' && item.process_stage=== 'Pre-underwriting').length;
                 const disabilityUnderwritingCount = response.data.filter(item => item.insurance_type === 'Disability Insurance' && item.process_stage=== 'Underwriting').length;
                 const disabilityApprovedCount = response.data.filter(item => item.insurance_type === 'Disability Insurance' && item.process_stage=== 'Approved').length;
@@ -27,15 +28,12 @@ const DIChart = () => {
             .catch(err => console.error(err));
     }, []);
 
+    const clickRoute = (data) => {console.log(data)}
+
 
     return (
         <div className="chart">
-            <Pie getElementAtEvent={(data) => {
-                if (data.length >= 1) {
-                    setFoundLabel(labelValues[data[0].index])
-                }
-                console.log(foundLabel)
-            }}
+            <Pie getElementAtEvent={(data) => clickRoute(data)}
                 data={{
                     labels: ["Pre-Underwriting","Underwriting", "Approved"],
                     datasets: [{
@@ -74,4 +72,4 @@ const DIChart = () => {
     )
 }
 
-export default DIChart
+export default DIChart;

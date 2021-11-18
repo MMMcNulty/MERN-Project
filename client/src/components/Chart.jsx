@@ -10,8 +10,6 @@ import { Pie } from 'react-chartjs-2';
 
 
 const Chart = (props) => {
-    const [clientList, setClientList] = useState([]);
-    const [foundLabel, setFoundLabel] = useState("");
     const [labelValues, setLabelValues] = useState([]);
     const [chartData, setChartData] = useState([]);
     const history = useHistory();
@@ -21,7 +19,6 @@ const Chart = (props) => {
         axios.get('http://localhost:8000/api/clients')
             .then(response => {
                 console.log(response.data)
-                setClientList(response.data)
                 const disabilityCount = response.data.filter(item => item.insurance_type === 'Disability Insurance').length;
                 const lifeCount = response.data.filter(item => item.insurance_type === 'Life Insurance').length;
                 let tempArr=[];

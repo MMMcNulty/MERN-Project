@@ -1,14 +1,18 @@
 import React from 'react'
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import DragDrop from '../components/DragDrop';
+import { useHistory } from 'react-router';
 
 const ProcessBoard = () => {
+
+    let history = useHistory();
+
+
     return (
         <div>
             <DragDrop />
+            <button onClick={(e) =>{history.push('/')}}>Back to dashboard</button>
         </div>
     )
 }
 
-export default ProcessBoard
+export default ProcessBoard;

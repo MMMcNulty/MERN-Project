@@ -6,7 +6,7 @@ import Chart from '../components/Chart'
 const Dashboard = () => {
     return (
         <div>
-            <h1>Testing this is my dashboard page🦄</h1>
+            <h1>Welcome to Pipeline!</h1>
             <Chart />
             <Link to="/disabilityInsurance">Disability Insurance Clients</Link> | <Link to="/lifeInsurance">Life Insurance Clients</Link>
             

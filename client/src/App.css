@@ -42,3 +42,25 @@
   min-height: 500px;
   min-width: 500px;
 }
+.client-container {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+}
+.client-stage {
+  margin: 30px;
+  display: flex;
+  flex: 1;
+  min-height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+.clients {
+  border-color: blue;
+  border-style: dotted;
+  min-height: 200px;
+  width: 200px;
+}

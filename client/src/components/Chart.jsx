@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 
 
 import { Pie } from 'react-chartjs-2';
+
 
 
 const Chart = (props) => {
@@ -12,6 +14,7 @@ const Chart = (props) => {
     const [foundLabel, setFoundLabel] = useState("");
     const [labelValues, setLabelValues] = useState([]);
     const [chartData, setChartData] = useState([]);
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -35,16 +38,18 @@ const Chart = (props) => {
             .catch(err => console.error(err));
     }, []);
 
+        const clickRoute = (data) => {
+            if (data.length >= 1) {
+                let routeVar = (labelValues[data[0].index]).replace(" ","");
+                console.log(routeVar)
+                history.push(`/${routeVar}`)
+            }
+        }
 
 
     return (
         <div className="chart">
-            <Pie getElementAtEvent={(data) => {
-                if (data.length >= 1) {
-                    setFoundLabel(labelValues[data[0].index])
-                }
-                console.log(foundLabel)
-            }}
+            <Pie getElementAtEvent={(data) => clickRoute(data)}
                 data={{
                     labels: labelValues,
                     datasets: [{
